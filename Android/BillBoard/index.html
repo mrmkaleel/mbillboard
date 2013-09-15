@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+		<title>mBillBoard</title>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.css" />
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
+    
+      
+	</head>
+  
+	<body>
+      <div id="homePage" data-role="page"> 
+						
+       <div data-role="header" data-theme="e">
+		    <h1>mBillBoard</h1>
+		</div>
+       <div data-role="content" data-theme="c">
+    
+    <div id="formDetails">   
+   <form name="publishAD" id="publishAD" METHOD="post">
+   <input type="hidden" id="topic" name="topic" value="22be505a5531d134728568e94685e53c/team2/ard01/cmd">
+   
+   
+   
+    <fieldset>
+        <label for="textarea">AD Message:</label>
+		<textarea cols="40" rows="8" name="payload" id="payload"></textarea>
+    </fieldset>
+    <fieldset>
+    		<input type="submit" name="submit" data-theme="a" id="submit" value="Publish AD" />
+    </fieldset>	
+    </form>
+    </div>
+    </div><!-- /content -->
+			</div>
+		</div>
+        
+         <script>
+  $('form').submit(function(){  
+   	var username ="team2@att.com";
+	var password ="team2pass";
+   if($('#payload').val() == ""){
+    		alert('Your AD Message is empty !');
+			$('#payload').focus();
+   			 return false; // To avoid the submit (error)
+  		}
+               var formData = $("#publishAD").serialize();  
+               $.ajax({
+                   type: "POST",
+				//   cache: false,			   
+			    //   contentType: "application/x-www-form-urlencoded",
+                   url: "http://att-api.m2m.io/2/account/domain/22be505a5531d134728568e94685e53c/stuff/team2/thing/ard01/publish",				   
+			   beforeSend: function(xhr) {  
+			   					// xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+								xhr.setRequestHeader('Authorization', make_base_auth("team2@att.com","team2pass")); },
+                   
+                   data: formData,
+                   success: onSuccess,
+                   error: onError
+                }); 
+                return false;
+            });
+	function  onSuccess(data, status)
+        {
+			alert("success");
+			$("#formDetails").empty();
+			$("#publishAD").hide();			
+            $("<h3>Congratulations !</h3>").appendTo("#formDetails").trigger("create");
+        }
+  
+        function onError(data, status)
+      {
+			alert("faile");
+			$("#formDetails").empty();
+			$("#publishAD").hide();			
+			$("<h3>Sorry !</h3><p>Error occured. Please go back re-submit.</p>").appendTo("#formDetails").trigger("create");
+            // handle an error
+        }    
+		
+
+</script>
+	</body>
+</html>

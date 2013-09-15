@@ -1,1 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "com.mBillBoard"
+        version   = "1.4">
+    <name>mBillBoard</name>
+
+    <description>mBillBoard
+    </description>
+
+    <author href="http://alfa-infotech.com" email="azam@alfa-infotech.com">
+        Mohammad Azam
+    </author>
+
 	<access origin="*" browserOnly="true" />
+
+	<preference name="target-device" value="universal" />
+	<preference name="phonegap-version" value="2.9.0" /> 
+	
+	<plugin name="InAppBrowser" value="org.apache.cordova.InAppBrowser" />
+	<plugin name="Geolocation" value="org.apache.cordova.GeoBroker" />
+	<plugin name="NetworkStatus" value="org.apache.cordova.NetworkManager" />
+	
+	
+	<feature name="http://api.phonegap.com/1.0/network"/>
+	<feature name="http://api.phonegap.com/1.0/geolocation"/>
+	<feature name="http://api.phonegap.com/1.0/device" />
+	
+
+    
+    
+</widget>
